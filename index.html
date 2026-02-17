@@ -4,10 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./global.css" />
     <title>Filofax</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header>
+        <h1 class="address-header">ADDRESS BOOK</h1>
+        <p>
+          You can see all stored contacts in the list seen below. Each contact
+          id either an indicidual or a company account.
+        </p>
+      </header>
+      <div class="card-conteaner">
+        <div class="card-body">
+          <div class="card-thumbnail">
+            <p>FD</p>
+          </div>
+          <div class="card-name">
+            <p></p>
+          </div>
+          <div class="card-tile">
+            <p></p>
+          </div>
+          <div class="card-icons"></div>
+          <div class="card-expand"></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -1,3 +1,4 @@
+import "./styles/global.less";
 import data from "./data/prepopulation.json";
 
 document.addEventListener("DOMContentLoaded", () => {

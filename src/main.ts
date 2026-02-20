@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   app?.appendChild(headerElement);
   const container = document.createElement("div");
-  container.classList.add("card-conteaner");
+  container.classList.add("card-container");
   app?.appendChild(container);
 
   typedData.contacts.forEach((value) => {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!title) title = "";
 
-    const cardElemnt: HTMLDivElement = document.createElement("div");
+    const cardElement: HTMLDivElement = document.createElement("div");
 
     const thumbnailDiv = document.createElement("div");
     thumbnailDiv.classList.add("card-thumbnail");
@@ -69,16 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardIcons = document.createElement("div");
     cardIcons.classList.add("card-icons");
     cardIcons.innerHTML = `
-      <div class="icon-conteaner">
+      <div class="icon-container">
         <img src="/telephone.png" alt="" />
       </div>
-      <div class="icon-conteaner">
+      <div class="icon-container">
         <img src="/email.png" alt="" />
       </div>
-      <div class="icon-conteaner">
+      <div class="icon-container">
         <img src="/chat.png" alt="" />
       </div>
-      <div class="icon-conteaner">
+      <div class="icon-container">
         <img src="/calendar.png" alt="" />
       </div>
     `;
@@ -86,13 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardDropDownArrow = document.createElement("div");
     cardDropDownArrow.classList.add("card-expand");
     cardDropDownArrow.id = "card-drop-down";
-    cardDropDownArrow.innerHTML = `
-      <img id="img" src="/down-arrow.png" alt="" />
-    `;
+    cardDropDownArrow.innerHTML = `<img id="down-arrow" src="/down-arrow.png" alt="" />`;
 
-    cardElemnt.classList.add("card-body");
+    cardElement.classList.add("card-body");
 
-    cardElemnt.append(
+    cardElement.append(
       thumbnailDiv,
       nameP,
       titleP,
@@ -101,8 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cardDropDownArrow,
     );
 
-    const parentDiv: Element | null = document.querySelector(".card-conteaner");
-    if (parentDiv) parentDiv.appendChild(cardElemnt);
+    const parentDiv: Element | null = document.querySelector(".card-container");
+    if (parentDiv) parentDiv.appendChild(cardElement);
   });
 
   container?.addEventListener("click", (event) => {
@@ -113,16 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (expandBtn) {
       const cardBody = expandBtn.closest(".card-body");
       const dropDown = cardBody?.querySelector(".drop-down");
-      const img = cardBody?.querySelector("#img");
-
-      if (cardBody?.classList.value.includes("active")) {
-        img?.setAttribute("src", "public/down-arrow.png");
-      } else {
-        img?.setAttribute("src", "public/up-arrows.png");
-      }
+      const downArrow = cardBody?.querySelector("#down-arrow");
 
       dropDown?.classList.toggle("active");
       cardBody?.classList.toggle("active");
+      downArrow?.classList.toggle("active");
     }
   });
 });

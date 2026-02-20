@@ -9,8 +9,8 @@ p {
 
 header {
   display: grid;
-  /* fix */
-  margin-left: 10%;
+  width: 80%;
+  justify-self: center;
   margin-bottom: 70px;
   h1 {
     font-size: 40px;
@@ -20,7 +20,7 @@ header {
   }
 }
 
-.card-conteaner {
+.card-container {
   width: 80%;
   justify-self: center;
   display: grid;
@@ -40,13 +40,6 @@ header {
     &.active {
       height: auto;
       grid-template-rows: 120px 30px 40px 1fr 50px 40px;
-      .card-expand {
-        padding-top: 15px;
-        img {
-          width: 25px;
-          height: 25px;
-        }
-      }
     }
 
     grid-template-rows: 120px 30px 40px 50px 40px;
@@ -103,7 +96,7 @@ header {
       justify-content: center;
       align-content: center;
 
-      .icon-conteaner {
+      .icon-container {
         width: 40px;
         height: 40px;
         border-radius: 5px;
@@ -123,6 +116,9 @@ header {
       img {
         width: 40px;
         height: 40px;
+        &.active {
+          transform: rotate(-180deg);
+        }
       }
     }
   }

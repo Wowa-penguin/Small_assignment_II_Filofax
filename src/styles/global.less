@@ -31,25 +31,25 @@ header {
 
   .card-body {
     width: 250px;
-    height: 280px;
-    padding: 10px;
+    height: 250px;
+    padding-top: 20px;
     background-color: #fff;
-    border-radius: 25px;
+    border-radius: 10px;
     display: grid;
 
     &.active {
       height: auto;
-      grid-template-rows: 120px 30px 40px 1fr 50px 40px;
+      grid-template-rows: 100px 30px 30px 1fr 50px 40px;
     }
 
-    grid-template-rows: 120px 30px 40px 50px 40px;
+    grid-template-rows: 100px 30px 30px 50px 40px;
     justify-items: center;
     align-content: center;
 
     .card-thumbnail {
       background-color: #21cca3;
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 90px;
       justify-content: center;
       align-content: center;
@@ -78,6 +78,11 @@ header {
         align-items: center;
         margin-bottom: 20px;
         p {
+          text-align: center;
+          font-size: 14px;
+          color: #888484;
+        }
+        a {
           text-align: center;
           font-size: 14px;
           color: #888484;

@@ -52,15 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const lines = [
       `<p>${value.phoneNumber}</p>`,
-      `<p>${value.email}</p>`,
+      `<a><u>${value.email}</u></a>`,
       `<p>${value.address}</p>`,
-      `<p>${value.website}</p>`,
+      `<a><u>${value.website}</u></a>`,
     ];
 
     if (value.type === ContactType.Company) {
       lines.push(`<p class="key-contacts">Key contacts</p>`);
       value.keyContacts?.forEach((contact) => {
-        lines.push(`<p>${contact.name}\n${contact.email}</p>`);
+        lines.push(`<p>${contact.name}<br>&lt;${contact.email}&gt;</p>`);
       });
     }
 

@@ -1,10 +1,28 @@
-import { CompanyInfo } from "./company_info";
 import { ContactType } from "./contact_type";
-import { IndividualInfo } from "./Individual_info";
 
-export interface Contact {
+export type KeyContact = {
   name: string;
-  thumbnail: string;
+  email: string;
+};
+
+export type BaseContact = {
+  name: string;
   type: ContactType;
-  info: IndividualInfo | CompanyInfo;
-}
+  phoneNumber: string;
+  email: string;
+  address: string;
+  website: string;
+};
+
+export type IndividualContact = BaseContact & {
+  type: ContactType.Individual;
+  title?: string;
+};
+
+export type CompanyContact = BaseContact & {
+  type: ContactType.Company;
+  industry?: string;
+  keyContacts?: KeyContact[];
+};
+
+export type Contact = IndividualContact | CompanyContact;

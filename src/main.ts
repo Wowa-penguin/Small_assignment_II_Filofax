@@ -1,6 +1,11 @@
 import "./styles/global.less";
 import { Contact } from "./types/contact";
+import { ContactType } from "./types/contact_type";
 import data from "./data/prepopulation.json";
+
+type PrepopulationData = { contacts: Contact[] };
+
+const typedData = data as PrepopulationData;
 
 const getInitials = (fullName: string) => {
   if (!fullName) return "";
@@ -23,9 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
   container.classList.add("card-conteaner");
   app?.appendChild(container);
 
-  data.contacts.forEach((value) => {
-    let title = value.title;
-    if (!title) title = value.industry;
+  typedData.contacts.forEach((value) => {
+    let title = value.type === ContactType.Individual ? value.title : undefined;
+    if (!title && value.type === ContactType.Company) title = value.industry;
+
+    if (!title) title = "";
 
     const cardElemnt: HTMLDivElement = document.createElement("div");
 
@@ -43,39 +50,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropDownDiv = document.createElement("div");
     dropDownDiv.classList.add("drop-down");
 
-    dropDownDiv.innerHTML += `
-      <p>${value.phoneNumber}</p>
-      <p>${value.email}</p>
-      <p>${value.address}</p>
-      <p>${value.website}</p>
-    `;
+    const lines = [
+      `<p>${value.phoneNumber}</p>`,
+      `<p>${value.email}</p>`,
+      `<p>${value.address}</p>`,
+      `<p>${value.website}</p>`,
+    ];
 
-    if (value.type === "company") {
-      dropDownDiv.innerHTML += `<p class="key-contacts">Key contacts</p>`;
-      value.keyContacts?.map(
-        (contact) =>
-          (dropDownDiv.innerHTML += `
-        <p>${contact.name}\n${contact.email}</p>
-      `),
-      );
-    } else {
-      //
+    if (value.type === ContactType.Company) {
+      lines.push(`<p class="key-contacts">Key contacts</p>`);
+      value.keyContacts?.forEach((contact) => {
+        lines.push(`<p>${contact.name}\n${contact.email}</p>`);
+      });
     }
+
+    dropDownDiv.innerHTML = lines.join("");
 
     const cardIcons = document.createElement("div");
     cardIcons.classList.add("card-icons");
     cardIcons.innerHTML = `
       <div class="icon-conteaner">
-        <img src="/public/telephone.png" alt="" />
+        <img src="/telephone.png" alt="" />
       </div>
       <div class="icon-conteaner">
-        <img src="/public/email.png" alt="" />
+        <img src="/email.png" alt="" />
       </div>
       <div class="icon-conteaner">
-        <img src="/public/chat.png" alt="" />
+        <img src="/chat.png" alt="" />
       </div>
       <div class="icon-conteaner">
-        <img src="/public/calendar.png" alt="" />
+        <img src="/calendar.png" alt="" />
       </div>
     `;
 
@@ -83,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cardDropDownArrow.classList.add("card-expand");
     cardDropDownArrow.id = "card-drop-down";
     cardDropDownArrow.innerHTML = `
-      <img id="img" src="/public/down-arrow.png" alt="" />
+      <img id="img" src="/down-arrow.png" alt="" />
     `;
 
     cardElemnt.classList.add("card-body");
